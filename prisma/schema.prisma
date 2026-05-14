@@ -1,0 +1,227 @@
+// Prisma schema for EPRA Portal
+// This schema defines the User model for PostgreSQL authentication
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+
+enum UserRole {
+  ORIENTADOR
+  ALUNO_INTERNO
+  USUARIO_EXTERNO
+}
+
+model User {
+  id                 String    @id @default(cuid())
+  fullName           String
+  email              String    @unique
+  password          String
+  role               UserRole  @default(USUARIO_EXTERNO)
+  course            String?
+  isActive          Boolean   @default(true)
+  isEmailConfirmed   Boolean   @default(false)
+  activationToken   String?
+  activationExpires DateTime?
+  consentGiven      Boolean   @default(false)
+  consentTimestamp  DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  enrollments       Enrollment[]
+  applications      Application[]
+  libraryResources  LibraryResource[]
+  portfolioItems    PortfolioItem[]
+  testimonials      Testimonial[]
+
+  @@index([email])
+  @@index([activationToken])
+}
+
+model Testimonial {
+  id               String    @id @default(cuid())
+  userId           String
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  text             String    @db.Text
+  photoUrl         String?
+  status           String    @default("PENDING")
+  lgpdConsent      Boolean   @default(false)
+  consentTimestamp DateTime?
+  ipAddress        String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([status])
+  @@index([userId])
+}
+
+model ImpactMetrics {
+  id                String   @id @default("singleton")
+  totalStudents     Int      @default(0)
+  projectsCompleted Int      @default(0)
+  hardwareKits      Int      @default(0)
+  communityReach    Int      @default(0)
+  updatedAt         DateTime @updatedAt
+}
+
+
+model Course {
+  id             String       @id @default(cuid())
+  titulo         String
+  descricao      String
+  cargaHoraria   Int          // hours
+  vagas          Int          // vacancy count
+  dataLimite     DateTime     // enrollment deadline
+  horario        String       // schedule description
+  instrutor      String       // instructor name
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  enrollments    Enrollment[]
+
+  @@index([dataLimite])
+}
+
+enum AuditAction {
+  ROLE_PROMOTION
+  ROLE_REVOCATION
+  USER_DEACTIVATION
+  USER_REACTIVATION
+}
+
+model AuditLog {
+  id           String      @id @default(cuid())
+  action       AuditAction
+  actorId      String
+  targetUserId String?
+  details     String?
+  createdAt   DateTime    @default(now())
+
+  @@index([actorId])
+  @@index([targetUserId])
+  @@index([createdAt])
+}
+
+model Enrollment {
+  id        String   @id @default(cuid())
+  userId    String
+  courseId   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+}
+
+model Opportunity {
+  id          String   @id @default(cuid())
+  titulo      String
+  descricao  String
+  vagas      Int
+  dataLimite DateTime?
+  status     String   @default("Open")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  applications Application[]
+
+  @@index([status])
+  @@index([dataLimite])
+}
+
+model Application {
+  id            String     @id @default(cuid())
+  nome          String
+  email         String
+  curso         String
+  semestre     String
+  linkedInUrl   String?
+  pdfUrl        String
+  Oportunidade Opportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  opportunityId String
+  userId        String?
+  user          User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt     DateTime   @default(now())
+
+  @@unique([userId, opportunityId])
+  @@index([opportunityId])
+  @@index([userId])
+}
+
+model Challenge {
+  id          String   @id @default(cuid())
+  titulo      String
+  descricao   String
+  dataLimite  DateTime
+  urlGithub   String?
+  instrutor   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  submissions Submission[]
+
+  @@index([dataLimite])
+}
+
+model Submission {
+  id            String    @id @default(cuid())
+  userId        String
+  challengeId   String
+  urlGithub     String
+  status        String   @default("PENDING")
+  evaluatedBy   String?
+  evaluationNotes String?
+  createdAt     DateTime  @default(now())
+  Challenge    Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, challengeId])
+  @@index([challengeId])
+}
+
+model LibraryResource {
+  id            String   @id @default(cuid())
+  titulo        String
+  descricao     String
+  categoria     String   // "codigos" | "bibliotecas" | "materiais"
+  linguagem     String?  // "cpp" | "python" | "arduino" | "html" | null
+  tags          String[] // ["Básico", "Sensores", etc]
+  link          String   // external URL
+  downloadCount Int      @default(0)
+  createdById   String
+  createdBy     User     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([categoria])
+  @@index([linguagem])
+  @@index([createdById])
+}
+
+model PortfolioItem {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique // Auto-generated from title per D-05
+  description     String   @db.Text // Markdown support per D-14
+  images          String[] // Up to 5 URLs per D-08
+  technologies    String[] // Array of tech names per D-11
+  repositoryLink String? // GitHub URL per D-11
+  authorId        String
+  author          User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([slug])
+  @@index([authorId])
+}
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  url       String
+  alt       String?
+  createdAt DateTime @default(now())
+}

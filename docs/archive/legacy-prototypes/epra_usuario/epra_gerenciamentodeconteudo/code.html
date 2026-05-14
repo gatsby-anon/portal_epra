@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EPRA_SYSTEM_v1.0 | Content_Mgr</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(143, 175, 60, 0.1);
+            position: absolute;
+            z-index: 50;
+            pointer-events: none;
+        }
+        .technical-grid {
+            background-image: radial-gradient(rgba(143, 175, 60, 0.15) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        body {
+            background-color: #0D0D0D;
+            color: #e3e2e2;
+            overflow-x: hidden;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#d9e2ff",
+                      "outline-variant": "#454838",
+                      "on-secondary-fixed-variant": "#544600",
+                      "on-secondary": "#3a3000",
+                      "surface-dim": "#121414",
+                      "secondary": "#fff9ef",
+                      "on-tertiary-fixed": "#001945",
+                      "on-tertiary": "#002d6f",
+                      "outline": "#8f937f",
+                      "on-primary": "#273500",
+                      "on-primary-container": "#2f3f00",
+                      "primary-fixed-dim": "#b1d35c",
+                      "surface-container": "#1e2020",
+                      "secondary-fixed": "#ffe16d",
+                      "surface-bright": "#38393a",
+                      "primary": "#b1d35c",
+                      "on-tertiary-fixed-variant": "#00429c",
+                      "on-primary-fixed": "#151f00",
+                      "tertiary-container": "#79a1ff",
+                      "on-background": "#e3e2e2",
+                      "error-container": "#93000a",
+                      "error": "#ffb4ab",
+                      "secondary-container": "#ffdb3c",
+                      "surface-tint": "#b1d35c",
+                      "primary-fixed": "#cdf074",
+                      "on-secondary-fixed": "#221b00",
+                      "on-error": "#690005",
+                      "surface-container-highest": "#333535",
+                      "surface": "#121414",
+                      "on-primary-fixed-variant": "#3a4d00",
+                      "inverse-surface": "#e3e2e2",
+                      "on-secondary-container": "#725f00",
+                      "on-tertiary-container": "#003581",
+                      "surface-container-lowest": "#0d0e0f",
+                      "inverse-on-surface": "#2f3131",
+                      "surface-variant": "#333535",
+                      "secondary-fixed-dim": "#e9c400",
+                      "inverse-primary": "#4e6700",
+                      "background": "#121414",
+                      "tertiary": "#b0c6ff",
+                      "on-surface": "#e3e2e2",
+                      "on-surface-variant": "#c5c9b3",
+                      "tertiary-fixed-dim": "#b0c6ff",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-low": "#1a1c1c",
+                      "surface-container-high": "#292a2a",
+                      "primary-container": "#8faf3c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "8px",
+                      "md": "24px",
+                      "margin": "32px",
+                      "gutter": "20px",
+                      "xl": "64px",
+                      "lg": "40px",
+                      "sm": "16px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Space Grotesk"],
+                      "body-md": ["Space Grotesk"],
+                      "mono-data": ["Space Grotesk"],
+                      "h2": ["Space Grotesk"],
+                      "body-lg": ["Space Grotesk"],
+                      "h3": ["Space Grotesk"],
+                      "h1": ["Space Grotesk"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "mono-data": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface-container-lowest font-body-md technical-grid min-h-screen">
+<!-- TopNavBar — Padrão Landing Page -->
+<header class="fixed top-0 w-full z-50 border-b border-[#3A3A3A] bg-[#0D0D0D]/90 backdrop-blur-xl shadow-[0_0_15px_rgba(143,175,60,0.1)]">
+<div class="flex justify-between items-center w-full px-8 h-16 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-black tracking-widest text-[#b1d35c] italic font-['Space_Grotesk']">EPRA // TERMINAL</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-[#b1d35c] border-b-2 border-[#b1d35c] pb-1 font-['Space_Grotesk'] tracking-tight uppercase text-sm font-semibold" href="#">INICIO</a>
+<a class="text-gray-400 font-medium hover:text-[#b1d35c] transition-colors font-['Space_Grotesk'] tracking-tight uppercase text-sm" href="#">SOBRE</a>
+<a class="text-gray-400 font-medium hover:text-[#b1d35c] transition-colors font-['Space_Grotesk'] tracking-tight uppercase text-sm" href="#">DESAFIOS</a>
+<a class="text-gray-400 font-medium hover:text-[#b1d35c] transition-colors font-['Space_Grotesk'] tracking-tight uppercase text-sm" href="#">TUTORIAL</a>
+<a class="text-gray-400 font-medium hover:text-[#b1d35c] transition-colors font-['Space_Grotesk'] tracking-tight uppercase text-sm" href="#">CURSOS</a>
+</nav>
+<button class="hidden md:block bg-[#b1d35c]/10 border border-[#b1d35c]/50 text-[#b1d35c] px-4 py-2 font-['Space_Grotesk'] tracking-tight uppercase text-xs font-semibold hover:bg-[#1A1A1A] active:scale-95 transition-all">LOGIN</button>
+</div>
+</header>
+<!-- SideNavBar Implementation -->
+<aside class="fixed left-0 top-0 h-full flex flex-col pt-16 bg-[#1A1A1A]/70 backdrop-blur-lg h-screen w-64 border-r border-[#3A3A3A] shadow-[4px_0_15px_rgba(0,0,0,0.5)] z-40">
+<div class="p-6 border-b border-[#3A3A3A]">
+<h2 class="text-[#b1d35c] font-black italic tracking-widest font-['Space_Grotesk']">EPRA_PORTAL</h2>
+<p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Auth_Level: Admin</p>
+</div>
+<nav class="flex-grow flex flex-col pt-4">
+<a class="flex items-center gap-3 text-gray-400 px-4 py-3 hover:bg-[#1A1A1A] transition-all duration-200 hover:text-[#8FAF3C] font-['Space_Grotesk'] text-xs font-medium tracking-widest" href="#">
+<span class="material-symbols-outlined">badge</span> Profile_ID
+            </a>
+<a class="flex items-center gap-3 bg-[#8FAF3C]/20 text-[#8FAF3C] border-l-4 border-[#8FAF3C] px-4 py-3 shadow-[inset_0_0_10px_rgba(143,175,60,0.2)] font-['Space_Grotesk'] text-xs font-medium tracking-widest" href="#">
+<span class="material-symbols-outlined">terminal</span> Content_Mgr
+            </a>
+<a class="flex items-center gap-3 text-gray-400 px-4 py-3 hover:bg-[#1A1A1A] transition-all duration-200 hover:text-[#8FAF3C] font-['Space_Grotesk'] text-xs font-medium tracking-widest" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span> Admin_Term
+            </a>
+<a class="flex items-center gap-3 text-gray-400 px-4 py-3 hover:bg-[#1A1A1A] transition-all duration-200 hover:text-[#8FAF3C] font-['Space_Grotesk'] text-xs font-medium tracking-widest" href="#">
+<span class="material-symbols-outlined">query_stats</span> System_Logs
+            </a>
+</nav>
+<div class="p-4 border-t border-[#3A3A3A] space-y-4">
+<button class="w-full bg-[#8FAF3C] text-[#0D0D0D] py-2 font-bold text-xs tracking-widest active:scale-95 transition-transform">TERMINAL_SYNC</button>
+<button class="flex items-center gap-3 text-red-500/70 hover:text-red-500 px-4 py-2 transition-colors font-['Space_Grotesk'] text-xs font-medium tracking-widest">
+<span class="material-symbols-outlined">power_settings_new</span> Power_Down
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-20 px-12 pb-12">
+<!-- Dashboard Header -->
+<div class="mb-8 flex justify-between items-end">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="h-2 w-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px_#8faf3c]"></span>
+<span class="text-primary font-mono-data text-xs tracking-widest">SYSTEM_STABLE // 0xAF32</span>
+</div>
+<h2 class="font-h1 text-h2 text-on-background uppercase tracking-tight">Content_Management_Console</h2>
+</div>
+<div class="flex gap-4">
+<div class="px-4 py-2 bg-surface-container border border-outline-variant flex flex-col items-end">
+<span class="text-[10px] text-outline tracking-widest">ACTIVE_NODES</span>
+<span class="font-mono-data text-xl text-secondary-fixed">1,284</span>
+</div>
+<div class="px-4 py-2 bg-surface-container border border-outline-variant flex flex-col items-end">
+<span class="text-[10px] text-outline tracking-widest">BANDWIDTH</span>
+<span class="font-mono-data text-xl text-tertiary-container">84.2 GB/s</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Creation Console (Left Column) -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<!-- Creation Card -->
+<div class="bg-surface-container/70 backdrop-blur-xl border border-outline-variant p-6 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary/30"></div>
+<h3 class="font-label-caps text-label-caps text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add_box</span> NEW_INSTANCE_GEN
+                    </h3>
+<div class="space-y-4">
+<button class="w-full text-left p-4 bg-surface-container-highest/50 border-l-4 border-primary hover:bg-primary/10 transition-all flex justify-between items-center group">
+<div>
+<div class="font-mono-data text-sm">DEPLOY_COURSE</div>
+<div class="text-[10px] text-outline">GENERATE EDUCATIONAL ASSET</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</button>
+<button class="w-full text-left p-4 bg-surface-container-highest/50 border-l-4 border-secondary-fixed hover:bg-secondary-fixed/10 transition-all flex justify-between items-center group">
+<div>
+<div class="font-mono-data text-sm">INITIATE_CHALLENGE</div>
+<div class="text-[10px] text-outline">DEPLOY INTERACTIVE LOGIC PUZZLE</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</button>
+<button class="w-full text-left p-4 bg-surface-container-highest/50 border-l-4 border-tertiary-container hover:bg-tertiary-container/10 transition-all flex justify-between items-center group">
+<div>
+<div class="font-mono-data text-sm">APPEND_PORTFOLIO</div>
+<div class="text-[10px] text-outline">LOG TECHNICAL ACHIEVEMENT</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</button>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant">
+<label class="text-[10px] text-outline block mb-2 tracking-widest uppercase">Global_Priority_Override</label>
+<div class="h-1 bg-surface-container-lowest w-full overflow-hidden">
+<div class="h-full bg-secondary-fixed-dim w-3/4"></div>
+</div>
+</div>
+</div>
+<!-- Technical Specs / Health -->
+<div class="bg-surface-container-low border border-outline-variant p-6 font-mono-data text-xs space-y-3">
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="text-outline uppercase">Core_Logic:</span>
+<span class="text-primary-fixed">SYNCHRONIZED</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="text-outline uppercase">Latency:</span>
+<span class="text-primary">14ms</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="text-outline uppercase">Cache_Status:</span>
+<span class="text-secondary-fixed">88%_FULL</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline uppercase">Encryption:</span>
+<span class="text-tertiary-container">AES-256_ACTIVE</span>
+</div>
+</div>
+</div>
+<!-- Code Editor & Content Area (Right Column) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
+<!-- Editor Header Mockup -->
+<div class="bg-surface-container-highest border border-outline-variant rounded-t-lg overflow-hidden flex flex-col h-full">
+<div class="flex items-center justify-between px-4 py-2 bg-surface-container border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-error/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-secondary-container/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary/50"></div>
+</div>
+<div class="flex items-center gap-2 border-x border-outline-variant px-4 py-1">
+<span class="material-symbols-outlined text-sm text-primary">data_object</span>
+<span class="text-[10px] text-outline font-mono-data tracking-widest uppercase">module_core_v2.json</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[10px] text-outline font-mono-data">Ln 142, Col 8</span>
+<button class="bg-primary px-3 py-1 text-[10px] font-bold text-on-primary hover:bg-primary-fixed transition-colors">PUSH_CHANGES</button>
+</div>
+</div>
+<!-- IDE Content Area -->
+<div class="flex-grow flex min-h-[500px]">
+<!-- Line Numbers -->
+<div class="w-12 bg-surface-container-low border-r border-outline-variant flex flex-col items-center py-4 text-[10px] text-outline/50 font-mono-data leading-6 select-none">
+<span>140</span><span>141</span><span class="text-primary font-bold">142</span><span>143</span><span>144</span><span>145</span><span>146</span><span>147</span><span>148</span><span>149</span><span>150</span><span>151</span><span>152</span>
+</div>
+<!-- Text Area Mockup -->
+<div class="flex-grow p-4 font-mono-data text-sm relative bg-[#0d0d0d]/40 backdrop-blur-sm">
+<div class="mb-4">
+<span class="text-tertiary">"content_structure"</span>: {
+                            </div>
+<div class="ml-6 mb-2">
+<span class="text-secondary-fixed">"node_id"</span>: <span class="text-primary-fixed">"EPRA-CORE-01"</span>,
+                            </div>
+<div class="ml-6 mb-2">
+<span class="text-secondary-fixed">"payload_type"</span>: <span class="text-primary-fixed">"ADVANCED_ROBOTICS_V4"</span>,
+                            </div>
+<div class="ml-6 mb-2 bg-primary/10 border-l-2 border-primary -ml-6 pl-6">
+<span class="text-secondary-fixed">"status"</span>: <span class="text-primary-fixed">"ACTIVE"</span>, <span class="text-outline">// System override initiated</span>
+</div>
+<div class="ml-6 mb-2">
+<span class="text-secondary-fixed">"tags"</span>: [
+                            </div>
+<div class="ml-12 mb-2">
+<span class="text-primary-fixed">"cybernetics"</span>, <span class="text-primary-fixed">"automation"</span>, <span class="text-primary-fixed">"logic_flow"</span>
+</div>
+<div class="ml-6 mb-4">
+                                ]
+                            </div>
+<div class="mb-4">
+                                },
+                            </div>
+<div class="mb-4">
+<span class="text-tertiary">"deployment_vector"</span>: [
+                            </div>
+<div class="animate-pulse ml-2 text-primary">|</div>
+</div>
+</div>
+</div>
+<!-- Active Projects Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-surface-container-low border border-outline-variant p-4 hover:border-primary transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-mono-data text-sm">PROJECT_ORION_PHASE_1</h4>
+<p class="text-[10px] text-outline tracking-wider">LAST_SYNC: 4m ago</p>
+</div>
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold border border-primary/20">LIVE</span>
+</div>
+<div class="flex -space-x-2">
+<img alt="user1" class="w-6 h-6 rounded-full border border-surface-container-lowest" data-alt="close up headshot of a futuristic tech expert with glowing green interface elements in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNmLfUNrEveKe5zvAWXVFYBOsQQrs5A1nx3e3iqqePZRRbqvXkiY-xXqZcagjvDPhOE6i9znLVFeRx9_m8HjwCqe8VrMJ_ffDzevIk_sQZR-7a2hCWQRP4znO_4wqOrFJF2cP_So73u8dDJY4bKRTMBFW3DaOqKN9lJ_fTsBaLQJW7Y6Hv8G2u9D3C3zax_spfe5zaJ2ShvHdvUUiKxfuDEf-piGpdCr0oVqfSZe_r6N9iLmp0DNwPLpIPpBklafa7DOyg475ioxw"/>
+<img alt="user2" class="w-6 h-6 rounded-full border border-surface-container-lowest" data-alt="professional male engineer portrait with soft blue backlighting in a dark laboratory setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnXI_ot8I3dMLlVtNzymELKa6mZNxbwYy8oDpI65N-Z9XGGCTbeux9iOhvrp0LC3CMedlrVQEAuTUruq7D7Cg3c8q8gBQ8Irj5l-IBcN93r1_n6j11QCfK7RCsbTQnk006yL8xcAEkXTwNofY6-vr3ybBRNIztZqVfrOvx2AWhOcxMQ7xXtCSc6IOv_PBTNAb0XN_wol7EzgMzUpkgRyED0vB3BzROpbLB-1GAHyKF-jTIkPloUNV6E8yVttOfJE2rtoi5wOLaWpc"/>
+<div class="w-6 h-6 rounded-full bg-outline-variant flex items-center justify-center text-[8px] text-on-surface-variant font-bold">+4</div>
+</div>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-4 hover:border-secondary-fixed transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-mono-data text-sm">NEURAL_NETWORK_V2</h4>
+<p class="text-[10px] text-outline tracking-wider">LAST_SYNC: 2h ago</p>
+</div>
+<span class="px-2 py-0.5 bg-secondary-fixed/10 text-secondary-fixed text-[10px] font-bold border border-secondary-fixed/20">STAGING</span>
+</div>
+<div class="flex -space-x-2">
+<img alt="user3" class="w-6 h-6 rounded-full border border-surface-container-lowest" data-alt="focused portrait of a tech artist with holographic reflections on her face" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv3daXP4QGJoPOFoZIpwy8quNL8rCRDOdyURPds2kV9Kx3s5EyOXRyPUoHyCITjKi4XRpHWivq4bMPYeJinim1VKNwa659ZIfE7r5yv_F1hUqyoRLi5_ara9T2WkLJNznyEKU0PCuziZZLnZGwYXEZLII38F3pDaXXD6W4Qp4XiCDMxCoF2or1PADr4oc0zix8p940h28Uz_Tl6aiWTc7wqCs5An_LXAM0aT6WFnEOkD08a_qxznk0hY1_GhTlJnxwRCSWCiVUMH8"/>
+<div class="w-6 h-6 rounded-full bg-outline-variant flex items-center justify-center text-[8px] text-on-surface-variant font-bold">+2</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Status Bar -->
+<footer class="fixed bottom-0 left-64 right-0 h-6 bg-[#0D0D0D] border-t border-[#3A3A3A] px-4 flex items-center justify-between z-40 text-[9px] font-mono-data tracking-widest text-outline">
+<div class="flex items-center gap-6">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary inline-block"></span> READY</span>
+<span>UTF-8</span>
+<span>JSON_SCHEMA_v2.1</span>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-secondary-fixed">CPU: 42%</span>
+<span class="text-tertiary-container">MEM: 12.4GB</span>
+<span class="text-primary">LATENCY: 14MS</span>
+<span class="bg-[#1A1A1A] px-2 h-full flex items-center border-l border-[#3A3A3A]">VER: 1.0.4-STABLE</span>
+</div>
+</footer>
+<!-- Overlay elements for vibe -->
+<div class="scanline top-1/4"></div>
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none opacity-[0.03]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDadUIf_b5bFHs5PxFuwjn1AVJM04mvbZuVs7J9JC8cNKSkKlNmtjHJwIYgqNY760mhGvOhLkYkJ9SjODQcvGZHRPZo_VPZ9ujXoHqe-RB_OnAuWh48u-zgePKj3e4smRtfBiKxiZ_XvcaIMZAipPIv1zQ3ukebWBXzISuzrceyCVKnUiMR12RyZdtbjQBl6mR4RRZCulL-zpQBMeFbvvScCNhPJagwMXzwl1zYxX7H-hWghn-EIxgqqLmMR8L1JLFWM2m26AMnBXs');"></div>
+</body></html>

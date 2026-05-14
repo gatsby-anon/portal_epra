@@ -1,0 +1,9 @@
+node_modules/
+.next/
+public/images/
+*.png
+*.jpg
+*.webp
+*.woff2
+*.svg
+package-lock.json

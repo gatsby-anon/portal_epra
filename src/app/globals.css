@@ -1,0 +1,513 @@
+@import "tailwindcss";
+
+/* ============================================
+   EPRA Interface System — Design Tokens (Tailwind v4)
+   Source of Truth: DESIGN.md + code.html config
+   ============================================ */
+
+@theme inline {
+  /* === Colors === */
+  --color-background: #121414;
+  --color-surface: #121414;
+  --color-surface-dim: #121414;
+  --color-surface-bright: #38393a;
+  --color-surface-container-lowest: #0d0e0f;
+  --color-surface-container-low: #1a1c1c;
+  --color-surface-container: #1e2020;
+  --color-surface-container-high: #292a2a;
+  --color-surface-container-highest: #333535;
+  --color-surface-variant: #333535;
+  --color-surface-tint: #b1d35c;
+
+  --color-on-surface: #e3e2e2;
+  --color-on-surface-variant: #c5c9b3;
+  --color-on-background: #e3e2e2;
+  --color-inverse-surface: #e3e2e2;
+  --color-inverse-on-surface: #2f3131;
+
+  --color-primary: #b1d35c;
+  --color-primary-hover: #6E8B2E;
+  --color-primary-container: #8faf3c;
+  --color-primary-fixed: #cdf074;
+  --color-primary-fixed-dim: #b1d35c;
+  --color-on-primary: #273500;
+  --color-on-primary-container: #2f3f00;
+  --color-on-primary-fixed: #151f00;
+  --color-inverse-primary: #4e6700;
+
+  --color-secondary: #fff9ef;
+  --color-secondary-text: #9FAE6B;
+  --color-secondary-container: #ffdb3c;
+  --color-secondary-fixed: #ffe16d;
+  --color-secondary-fixed-dim: #e9c400;
+  --color-on-secondary: #3a3000;
+  --color-on-secondary-container: #725f00;
+
+  --color-tertiary: #b0c6ff;
+  --color-tertiary-container: #79a1ff;
+  --color-tertiary-fixed: #d9e2ff;
+  --color-tertiary-fixed-dim: #b0c6ff;
+  --color-on-tertiary: #002d6f;
+  --color-on-tertiary-container: #003581;
+
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-on-error: #690005;
+  --color-on-error-container: #ffdad6;
+
+  --color-outline: #8f937f;
+  --color-outline-variant: #454838;
+
+  --color-neon-green: #A4C639;
+  --color-vibrant-yellow: #F2C230;
+  --color-electric-blue: #2D6CDF;
+  --color-wire-red: #D64545;
+  --color-light-gray: #BFBFBF;
+  --color-border-gray: #3A3A3A;
+
+  /* === Typography === */
+  --font-headline: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-code: "JetBrains Mono", ui-monospace, monospace;
+
+  /* === Spacing === */
+  --spacing-base: 4px;
+  --spacing-xs: 8px;
+  --spacing-gutter: 20px;
+  --spacing-margin: 32px;
+
+  /* === Neon Pulse Refinement Tokens === */
+  --color-neon-pulse-primary: #b7c4ff;
+  --color-neon-pulse-secondary: #7df4ff;
+  --color-neon-pulse-primary-glow: rgba(183, 196, 255, 0.4);
+  --color-neon-pulse-secondary-glow: rgba(125, 244, 255, 0.5);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+body {
+  background-color: #0D0D0D;
+  background-image: radial-gradient(circle at 2px 2px, rgba(143, 175, 60, 0.03) 1px, transparent 0);
+  background-size: 32px 32px;
+  color: #BFBFBF;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ============================================
+   Glassmorphism Panels
+   ============================================ */
+
+.glass-panel {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reactive Border Glow Utility */
+.glass-panel-reactive::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(
+    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(125, 244, 255, 0.15),
+    transparent 80%
+  );
+  border: 1px solid rgba(125, 244, 255, 0.3);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.glass-panel-reactive:hover::after {
+  opacity: 1;
+}
+
+.heavy-glass {
+  background: rgba(13, 13, 13, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(143, 175, 60, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+.hero-glass-control {
+  background: rgba(13, 15, 13, 0.75);
+  backdrop-filter: blur(16px) saturate(200%);
+  border-left: 4px solid #8FAF3C;
+  border-top: 1px solid rgba(177, 211, 92, 0.6);
+  border-bottom: 1px solid rgba(177, 211, 92, 0.4);
+  border-right: 1px solid rgba(177, 211, 92, 0.4);
+  box-shadow:
+    0 20px 80px rgba(0, 0, 0, 0.95),
+    inset 0 0 40px rgba(177, 211, 92, 0.15),
+    0 0 25px rgba(177, 211, 92, 0.25);
+}
+
+/* ============================================
+   Glow Effects
+   ============================================ */
+
+.glow-border-primary {
+  box-shadow: 0 0 15px rgba(143, 175, 60, 0.15);
+}
+
+.radial-glow {
+  background: radial-gradient(circle at center, rgba(164, 198, 57, 0.2) 0%, transparent 70%);
+}
+
+/* ============================================
+   Hero Background Layer
+   ============================================ */
+
+.hero-background-layer {
+  background-image:
+    linear-gradient(to bottom, rgba(13, 13, 13, 0.7) 0%, rgba(13, 13, 13, 0.2) 50%, rgba(13, 13, 13, 1) 100%),
+    var(--hero-bg-url);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-background-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 70% 30%, rgba(143, 175, 60, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(45, 108, 223, 0.1) 0%, transparent 30%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   Scanline Overlay (Testimonials)
+   ============================================ */
+
+.scanline-overlay {
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+}
+
+/* ============================================
+   Keyframe Animations
+   ============================================ */
+
+@keyframes scanline-move {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes pulse-glow-neon {
+  0%, 100% { box-shadow: 0 0 30px var(--color-neon-pulse-primary-glow); }
+  50% { box-shadow: 0 0 50px var(--color-neon-pulse-primary-glow); }
+}
+
+@keyframes glitch-sutil {
+  0% { transform: translate(0); clip-path: inset(0 0 0 0); }
+  2% { transform: translate(-2px, 1px); clip-path: inset(10% 0 80% 0); }
+  4% { transform: translate(2px, -1px); clip-path: inset(40% 0 20% 0); }
+  6% { transform: translate(0); clip-path: inset(0 0 0 0); }
+  100% { transform: translate(0); clip-path: inset(0 0 0 0); }
+}
+
+.animate-scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-scanline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, rgba(125, 244, 255, 0.2), transparent);
+  animation: scanline-move 2s linear infinite;
+  pointer-events: none;
+}
+
+.hover-pulse-neon:hover {
+  animation: pulse-glow-neon 1.5s ease-in-out infinite;
+}
+
+.glitch-sutil {
+  animation: glitch-sutil 4s infinite;
+}
+
+/* Clipped Corners Utility */
+.clipped-corner-hover {
+  transition: clip-path 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.clipped-corner-hover:hover {
+  clip-path: polygon(
+    10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%
+  );
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(164, 198, 57, 1); }
+  50% { box-shadow: 0 0 20px rgba(164, 198, 57, 0.5); }
+}
+
+@keyframes terminal-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-terminal-blink {
+  animation: terminal-blink 0.5s step-end infinite;
+}
+
+/* === Terminal Specific Effects === */
+
+.crt-effect {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.crt-effect::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.crt-effect::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: crt-flicker 0.15s infinite;
+}
+
+.vignette {
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 0.27861; }
+  5% { opacity: 0.34769; }
+  10% { opacity: 0.23604; }
+  15% { opacity: 0.90626; }
+  20% { opacity: 0.18128; }
+  25% { opacity: 0.83891; }
+  30% { opacity: 0.65583; }
+  35% { opacity: 0.57807; }
+  40% { opacity: 0.26559; }
+  45% { opacity: 0.84693; }
+  50% { opacity: 0.96019; }
+  55% { opacity: 0.08594; }
+  60% { opacity: 0.20313; }
+  65% { opacity: 0.71988; }
+  70% { opacity: 0.53455; }
+  75% { opacity: 0.37288; }
+  80% { opacity: 0.71428; }
+  85% { opacity: 0.70419; }
+  90% { opacity: 0.7003; }
+  95% { opacity: 0.36108; }
+  100% { opacity: 0.24387; }
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -2px 0 #ff00c1;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+  animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(31px, 9999px, 94px, 0); transform: skew(0.85deg); }
+  5% { clip: rect(70px, 9999px, 71px, 0); transform: skew(0.1deg); }
+  10% { clip: rect(10px, 9999px, 10px, 0); transform: skew(0.95deg); }
+  15% { clip: rect(90px, 9999px, 90px, 0); transform: skew(0.2deg); }
+  20% { clip: rect(40px, 9999px, 45px, 0); transform: skew(0.5deg); }
+  /* ... simplified ... */
+  100% { clip: rect(10px, 9999px, 10px, 0); transform: skew(0.5deg); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(65px, 9999px, 100px, 0); transform: skew(0.15deg); }
+  20% { clip: rect(30px, 9999px, 60px, 0); transform: skew(0.5deg); }
+  100% { clip: rect(10px, 9999px, 20px, 0); transform: skew(0.5deg); }
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D0D0D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3A3A3A;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8FAF3C;
+}
+
+/* ============================================
+   Custom Utilities
+   ============================================ */
+
+@utility font-headline {
+  font-family: var(--font-headline);
+}
+
+@utility font-body {
+  font-family: var(--font-body);
+}
+
+@utility font-code {
+  font-family: var(--font-code);
+}
+
+/* ============================================
+   Glow Spotlight System (GlowCard)
+   ============================================ */
+
+[data-glow] {
+  --border-size: calc(var(--border, 2) * 1px);
+  --spotlight-size: calc(var(--size, 200) * 1px);
+  --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+  
+  background-image: radial-gradient(
+    var(--spotlight-size) var(--spotlight-size) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 210) 80% 70% / var(--bg-spot-opacity, 0.07)),
+    transparent
+  );
+  background-color: var(--backdrop, rgba(26, 26, 26, 0.6));
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-position: 50% 50%;
+  background-attachment: fixed;
+  border: var(--border-size) solid var(--backup-border, rgba(255, 255, 255, 0.1));
+  position: relative;
+  touch-action: none;
+}
+
+[data-glow]::before,
+[data-glow]::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: calc(var(--border-size) * -1);
+  border: var(--border-size) solid transparent;
+  border-radius: inherit;
+  background-attachment: fixed;
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+  z-index: 2;
+}
+
+[data-glow]::before {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 210) 90% 60% / var(--border-spot-opacity, 0.4)),
+    transparent 100%
+  );
+  filter: brightness(1.5);
+}
+
+[data-glow]::after {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(0 0% 100% / var(--border-light-opacity, 0.3)),
+    transparent 100%
+  );
+}
+
+/* Outer Glow Blur Effect */
+[data-glow] [data-glow-outer] {
+  position: absolute;
+  inset: 0;
+  will-change: filter;
+  opacity: var(--outer, 1);
+  border-radius: inherit;
+  filter: blur(20px);
+  background: none;
+  pointer-events: none;
+  border: none;
+  z-index: -1;
+}
+
+[data-glow] [data-glow-outer]::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  background-image: radial-gradient(
+    var(--spotlight-size) var(--spotlight-size) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 210) 80% 60% / 0.15),
+    transparent
+  );
+  background-attachment: fixed;
+}

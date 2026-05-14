@@ -1,0 +1,55 @@
+{
+  "admin": {
+    "logs": [
+      { "timestamp": "14:22:01", "level": "INFO", "message": "Initializing core telemetry handshake... Success." },
+      { "timestamp": "14:22:04", "level": "INFO", "message": "Encrypted tunnel established at node 0x884." },
+      { "timestamp": "14:22:15", "level": "WARN", "message": "Latent heartbeat detected in sub-processor 09. Triggering diagnostic." },
+      { "timestamp": "14:23:42", "level": "ERROR", "message": "Access denied for UID: 1004. Permission bit missing." },
+      { "timestamp": "14:24:00", "level": "INFO", "message": "User 'SYS_ADM_ROOT' granted temporary elevation." },
+      { "timestamp": "14:24:05", "level": "DEBUG", "message": "Compiling access matrix... [====================] 100%" }
+    ],
+    "users": [
+      { "id": "DR_VANCE_01", "role": "ORIENTADOR", "sys": true, "vault": true, "net": true, "level": "LEVEL_5", "color": "text-secondary-container" },
+      { "id": "SYS_ADM_ROOT", "role": "ALUNO_INTERNO", "sys": true, "vault": true, "net": true, "level": "OVERRIDE", "color": "text-primary" },
+      { "id": "TECH_SHEPARD", "role": "ALUNO_INTERNO", "sys": false, "vault": true, "net": false, "level": "LEVEL_2", "color": "text-gray-400" },
+      { "id": "OPER_8823", "role": "USUARIO_EXTERNO", "sys": false, "vault": false, "net": true, "level": "GUEST", "color": "text-gray-400" }
+    ],
+    "alert": {
+      "title": "PROTOCOL_BREACH_DETECTED",
+      "message": "Tentativas não autorizadas registradas no IP: 192.168.1.254. Verificação manual necessária para todos os sub-processos."
+    }
+  },
+  "content": {
+    "projects": [
+      {
+        "id": "PROJECT_ORION_PHASE_1",
+        "lastSync": "4m atrás",
+        "status": "AO VIVO",
+        "statusColor": "primary"
+      },
+      {
+        "id": "NEURAL_NETWORK_V2",
+        "lastSync": "2h atrás",
+        "status": "EM ESPERA",
+        "statusColor": "secondary-fixed"
+      }
+    ]
+  },
+  "profile": {
+    "security": {
+      "alert": {
+        "title": "ALERT: LAST_LOGIN_ANOMALY",
+        "ip": "192.168.0.42 (Sub-Sector 4)"
+      },
+      "terminals": [
+        { "name": "MAIN_CONSOLE_01", "type": "desktop", "status": "ACTIVE" },
+        { "name": "MOBILE_UNIT_04", "type": "mobile", "status": "OFFLINE" }
+      ]
+    },
+    "activity": [
+      { "timestamp": "2024.05.21 / 14:32:01", "action": "Acesso ao Arquivo Neural", "node": "NODE_ARC_09", "status": "COMPLETE", "statusColor": "primary" },
+      { "timestamp": "2024.05.21 / 11:05:44", "action": "Validação de Chave de Segurança", "node": "GATEWAY_7", "status": "COMPLETE", "statusColor": "primary" },
+      { "timestamp": "2024.05.20 / 23:59:12", "action": "Execução de Diagnóstico do Sistema", "node": "CORE_SERVER", "status": "WARNING", "statusColor": "secondary-fixed" }
+    ]
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "system": {
+    "id": "EPRA-v3.0",
+    "name": "EPRA // TERMINAL",
+    "tagline": "Engenharia de Projetos e Robótica Aplicada",
+    "version": "3.0.42",
+    "brand": "EPRA // TERMINAL"
+  },
+  "nav": [
+    { "label": "INICIO", "href": "/", "active": true },
+    { "label": "SOBRE", "href": "#mission" },
+    { "label": "DESAFIOS", "href": "#challenge" },
+    { "label": "TUTORIAL", "href": "#modules" },
+    { "label": "CURSOS", "href": "#courses" },
+    { "label": "GALERIA", "href": "/galeria" },
+    { "label": "DEPOIMENTOS", "href": "#testimonials" },
+    { "label": "BIBLIOTECA", "href": "#biblioteca" }
+  ],
+  "hero": {
+    "status": "System_Online // Protocol_EPRA",
+    "titlePart1": "DECODE O FUTURO COM",
+    "titleHighlight": "ROBÓTICA",
+    "subtitle": "Domine Arduino, C++ e Python através da engenharia prática. O EPRA democratiza a tecnologia de ponta no coração de Russas, transformando linhas de código em movimento.",
+    "ctaPrimary": "[VER CURSOS]",
+    "ctaSecondary": "[EXPLORAR TUTORIAIS]",
+    "backgroundImage": "/images/hero-bg.jpg"
+  },
+  "stats": [
+    { "id": "MOD_01", "label": "TOTAL_ALUNOS", "value": "847", "color": "neon-green", "progress": 75 },
+    { "id": "MOD_02", "label": "PARCERIAS_ESCOLAS", "value": "23", "color": "vibrant-yellow", "progress": 50 },
+    { "id": "MOD_03", "label": "LAB_HOURS_LOGGED", "value": "3.240", "color": "primary", "progress": 83 },
+    { "id": "MOD_04", "label": "PROJECTS_DEPLOYED", "value": "156", "color": "electric-blue", "progress": 66 }
+  ],
+  "mission": {
+    "title": "MISSION_LOG :: UFC_RUSSAS",
+    "icon": "Terminal",
+    "description": "Nascido no Campus da UFC em Russas, o EPRA é mais que um projeto de extensão; é um hub de inovação focado na democratização da tecnologia. Nossa missão é romper as barreiras da engenharia complexa, trazendo o ensino de robótica e sistemas embarcados para a comunidade.",
+    "terminal": {
+      "prompt": "ROOT@EPRA:~$",
+      "command": "init_mission --target=\"DEMOCRATIZAR_TECNOLOGIA\"",
+      "steps": [
+        { "text": ">> Proporcionando conhecimento em programação...", "type": "loading" },
+        { "text": ">> Proporcionando conhecimento em robotica...", "type": "loading" },
+        { "text": ">> Success: Aberta as portas do mercado.", "type": "success" }
+      ]
+    },
+    "image": "/images/mission-ufc.webp"
+  },
+  "modules": {
+    "sectionLabel": "EDUCATIONAL_DIRECTORY",
+    "sectionTitle": "NODES DE APRENDIZADO",
+    "version": "VER_0.4.1 // CORE_MODULES",
+    "items": [
+      {
+        "icon": "Cpu",
+        "iconColor": "electric-blue",
+        "title": "Arduino UNO",
+        "description": "Fundamentos de eletrônica e lógica de controle para iniciantes.",
+        "ctaLabel": "ACESSAR_MODULO >",
+        "ctaColor": "primary"
+      },
+      {
+        "icon": "Lightbulb",
+        "iconColor": "vibrant-yellow",
+        "title": "LED Blink",
+        "description": "O primeiro passo na programação física: controlando sinais digitais.",
+        "ctaLabel": "ACESSAR_MODULO >",
+        "ctaColor": "vibrant-yellow"
+      },
+      {
+        "icon": "Terminal",
+        "iconColor": "primary",
+        "title": "Python for Robotics",
+        "description": "Linguagem de alto nível para automação e visão computacional.",
+        "ctaLabel": "ACESSAR_MODULO >",
+        "ctaColor": "secondary-text"
+      },
+      {
+        "icon": "Settings2",
+        "iconColor": "electric-blue",
+        "title": "Ultrasonic Sensor",
+        "description": "Medição de distância e percepção espacial em tempo real.",
+        "ctaLabel": "ACESSAR_MODULO >",
+        "ctaColor": "primary"
+      }
+    ]
+  },
+  "challenge": {
+    "id": "CHALLENGE_ID: #EPRA-2024-X",
+    "badge": "URGENT_CHALLENGE",
+    "title": "SISTEMA DE ALARME INTELIGENTE",
+    "description": "Desenvolva um nó de segurança utilizando ESP32 e sensores PIR com integração via Telegram. O código mais eficiente será incorporado ao nosso repositório oficial.",
+    "status": "ACTIVE",
+    "submissions": "42 Units",
+    "prize": "Starter Kit IoT",
+    "cta": "ENTER_CHALLENGE",
+    "image": "/images/challenge-hardware.jpg"
+  },
+  "testimonials": {
+    "sectionLabel": "EPRA_COMMUNITY",
+    "sectionTitle": "DEPOIMENTOS DOS",
+    "sectionHighlight": "EX-ALUNOS",
+    "terminalPath": "src / feedback / user_review.sh",
+    "featured": {
+      "name": "ELENA RODRIGUEZ",
+      "role": "Chief Technology Officer @ Neural-Link Systems",
+      "avatar": "/images/testimonial-avatar.jpg",
+      "rating": 5,
+      "quote": "A precisão técnica e a visão arquitetônica fornecidas superaram todas as expectativas. Integrar os protocolos blink-core em nosso cluster principal foi perfeito. Um engenheiro de classe mundial com uma estética distinta.",
+      "uid": "FEEDBACK_UID: 0x88F2A"
+    },
+    "secondary": [
+      {
+        "name": "Marcus Thorne",
+        "role": "Lead DevOps, CyberSec Inc.",
+        "rating": 5,
+        "quote": "Mestre nas artes obscuras da otimização de baixo nível. O código é tão limpo quanto a UI é bonita.",
+        "date": "01.12.23",
+        "borderColor": "primary"
+      },
+      {
+        "name": "Sarah Chen",
+        "role": "Product Lead, Arasaka Dev",
+        "rating": 5,
+        "quote": "Gosto de design excepcional. É raro encontrar um desenvolvedor que entenda estética tão profundamente.",
+        "date": "11.11.23",
+        "borderColor": "electric-blue"
+      }
+    ]
+  },
+  "courses": [
+    {
+      "code": "ARD-01",
+      "name": "Arduino CORE",
+      "level": "LEVEL_01",
+      "hours": "40H_DURATION",
+      "description": "Imersão completa em C++ para microcontroladores e arquitetura AVR.",
+      "icon": "BadgeCheck",
+      "gradientColor": "primary",
+      "ctaColor": "primary"
+    },
+    {
+      "code": "PY-IOT",
+      "name": "Python & IoT",
+      "level": "LEVEL_02",
+      "hours": "60H_DURATION",
+      "description": "Desenvolva dashboards inteligentes e controle dispositivos via Wi-Fi.",
+      "icon": "Cpu",
+      "gradientColor": "vibrant-yellow",
+      "ctaColor": "vibrant-yellow"
+    },
+    {
+      "code": "ROB-ADV",
+      "name": "ESP32 Advanced",
+      "level": "LEVEL_MAX",
+      "hours": "50H_DURATION",
+      "description": "Protocolos MQTT, FreeRTOS e economia de energia em projetos reais.",
+      "icon": "Bot",
+      "gradientColor": "electric-blue",
+      "ctaColor": "electric-blue"
+    }
+  ],
+  "portfolio": {
+    "sectionLabel": "PROJECT_SHOWCASE",
+    "sectionTitle": "PORTFOLIO",
+    "items": [
+      {
+        "title": "CORE_PROJECT: PROMETHEUS",
+        "subtitle": "Autonomous Navigation System V2.1",
+        "image": "/images/portfolio-main.jpg",
+        "type": "featured"
+      },
+      {
+        "title": "HARDWARE_LAB",
+        "image": "/images/portfolio-hardware.jpg",
+        "type": "overlay"
+      },
+      {
+        "title": "Team Work",
+        "image": "/images/portfolio-team.png",
+        "type": "grayscale"
+      },
+      {
+        "value": "200+",
+        "label": "GITHUB_COMMITS",
+        "type": "stat"
+      }
+    ]
+  },
+  "recruitment": {
+    "badge": "OPEN_RECRUITMENT_2026",
+    "title": "JUNTE-SE AO",
+    "titleHighlight": "EPRA",
+    "description": "Estamos em busca de desenvolvedores, designers e entusiastas em robótica para expandir nossos horizontes. Se você quer impactar a educação tecnológica, seu terminal está esperando.",
+    "positions": [
+      {
+        "title": "Voluntariado Ensino",
+        "description": "Auxilie em aulas práticas e desenvolvimento de material didático.",
+        "cta": "[APLICAR]",
+        "color": "primary"
+      },
+      {
+        "title": "UI/UX Design",
+        "description": "Construa as interfaces do futuro para nossos sistemas internos.",
+        "cta": "[APLICAR]",
+        "color": "vibrant-yellow"
+      }
+    ]
+  },
+  "footer": {
+    "brand": "EPRA.SYSTEMS",
+    "description": "Engenharia de Projetos e Robótica Aplicada // Campus UFC Russas. Uma iniciativa para expansão tecnológica e educação prática.",
+    "contact": {
+      "email": "epra@ufc.br",
+      "phone": "(31) 3409-0000",
+      "campus": "Campus Universitário",
+      "city": "Russas - Ce"
+    },
+    "location": {
+      "address": "RUA BENEDITO RIBEIRO GUIMARÃES, 1061",
+      "region": "RUSSAS, CE - BRASIL",
+      "sector": "SECTOR_05 // CAMPUS_UFC"
+    },
+    "copyright": "© 2024 EPRA INDUSTRIAL TERMINAL. ALL SYSTEMS OPERATIONAL.",
+    "status": "STABLE_CONNECTION"
+  }
+}

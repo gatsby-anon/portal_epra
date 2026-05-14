@@ -1,0 +1,49 @@
+{
+    "system": {
+      "id": "EPRA-v3.0",
+      "name": "EPRA // TERMINAL",
+      "tagline": "Engenharia de Projetos e Robótica Aplicada",
+      "version": "3.0.42"
+    },
+    "hero": {
+      "title": "FORJANDO O FUTURO DA ENGENHARIA",
+      "subtitle": "Terminal de alta performance para o desenvolvimento de competências em robótica aplicada, sistemas embarcados e engenharia de software.",
+      "location": "UFC // CAMPUS RUSSAS",
+      "status": "SYSTEM_OPERATIONAL_V3.0",
+      "cta": "INICIAR_SESSÃO"
+    },
+    "stats": [
+      {"label": "ESTUDANTES", "value": "+150", "suffix": "ATIVOS"},
+      {"label": "PROJETOS", "value": "42", "suffix": "NODES"},
+      {"label": "LABORATÓRIO", "value": "2.4k", "suffix": "HOURS"}
+    ],
+    "courses": [
+      {
+        "code": "ARD-01",
+        "name": "ARDUINO CORE",
+        "level": "NÍVEL_01",
+        "hours": "40H",
+        "description": "Fundamentos de eletrônica e lógica C++ para microcontroladores."
+      },
+      {
+        "code": "PY-IOT",
+        "name": "PYTHON & IOT",
+        "level": "NÍVEL_02",
+        "hours": "60H",
+        "description": "Integração de sistemas embarcados com protocolos de nuvem e MQTT."
+      },
+      {
+        "code": "ROB-ADV",
+        "name": "ROBÓTICA MÓVEL",
+        "level": "NÍVEL_03",
+        "hours": "80H",
+        "description": "Cinemática avançada e navegação autônoma em ambientes complexos."
+      }
+    ],
+    "footer": {
+      "address": "RUA BENEDITO RIBEIRO GUIMARÃES, 1061 - RUSSAS, CE",
+      "sector": "SECTOR_05 // CAMPUS_UFC",
+      "copyright": "© 2024 EPRA // LABORATÓRIO DE ROBÓTICA"
+    }
+  }
+  
